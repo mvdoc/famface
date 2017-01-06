@@ -1,0 +1,140 @@
+Executable = /usr/bin/python
+Universe   = vanilla
+RequestMemory = 8000
+RequestCPUs = 1
+logdir = logs
+output = $(logdir)/$(Cluster)-$(Process).o
+error = $(logdir)/$(Cluster)-$(Process).e
+log = $(logdir)/$(Cluster)-$(Process).log
+
+# subject 01
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub001/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub001/betas/run_mc_noisecomp_derivs/runall.hdf5 
+queue
+
+# subject 02
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub002/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub002/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 03
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub003/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub003/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 04
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub004/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub004/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 05
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub005/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub005/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 06
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub006/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub006/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 07
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub007/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub007/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 08
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub008/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub008/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 09
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub009/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub009/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 10
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub010/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub010/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 11
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub011/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub011/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 12
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub012/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub012/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 13
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub013/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub013/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 14
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub014/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub014/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 15
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub015/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub015/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 16
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub016/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub016/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 17
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub017/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub017/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 18
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub018/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub018/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 19
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub019/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub019/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 20
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub020/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub020/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 21
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub021/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub021/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 22
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub022/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub022/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 23
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub023/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub023/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 24
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub024/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub024/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 25
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub025/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub025/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 26
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub026/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub026/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 27
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub027/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub027/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 28
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub028/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub028/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 29
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub029/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub029/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 30
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub030/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub030/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 31
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub031/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub031/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 32
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub032/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub032/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
+
+# subject 33
+arguments = stack_betas.py --derivs -i /data/famface/openfmri/results/l1ants_final/model001/task001/sub033/betas/run_mc_noisecomp_derivs/run0??.hdf5 -o /data/famface/openfmri/results/l1ants_final/model001/task001/sub033/betas/run_mc_noisecomp_derivs/runall.hdf5
+queue
