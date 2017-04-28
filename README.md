@@ -27,8 +27,11 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
   datasets into CoSMoMVPA datasets for statistical testing using TFCE
 - [`run_tfce_mvdoc_fx.m`](run_tfce_mvdoc_fx.m): script to run TFCE on
   accuracy maps using CoSMoMVPA
+- [`compute_dsmroi_firstlev.py`](compute_dsmroi_firstlev.py): script to
+  compute first-level cross-validated representational dissimilarity matrices
 
 ## Auxiliary modules
 
 - [`mds_rois.py`](mds_rois.py): contains functions to run MDS analyses
+- [`expdir.py`](expdir.py): to fetch directories used in analyses
 
