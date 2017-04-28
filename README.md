@@ -18,20 +18,28 @@ example with the same name from stock Nipype
 
 ## Analysis
 
+### GLM
+
 - [`group_multregress_openfmri.py`](group_multregress_openfmri.py):
   nipype pipeline to perform third (group) level univariate analysis
 with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
 (our thanks to them!)
+
+### MVPC
+
 - [`run_sl.py`](run_sl.py): main script to run searchlight analyses
 - [`pymvpa2cosmo.py`](pymvpa2cosmo.py): script to convert PyMVPA
   datasets into CoSMoMVPA datasets for statistical testing using TFCE
 - [`run_tfce_mvdoc_fx.m`](run_tfce_mvdoc_fx.m): script to run TFCE on
   accuracy maps using CoSMoMVPA
-- [`compute_dsmroi_firstlev.py`](compute_dsmroi_firstlev.py): script to
-  compute first-level cross-validated representational dissimilarity matrices
+
+### Similarity of Representational Geometries
+
 - [`notebooks/define_rois_mds.ipynb`](notebooks/define_rois_mds.ipynb):
   notebook used to obtain non-overlapping spherical ROIs in both the
 task data and the movie hyperaligned data
+- [`compute_dsmroi_firstlev.py`](compute_dsmroi_firstlev.py): script to
+  compute first-level cross-validated representational dissimilarity matrices
 - [`notebooks/compute_dsmroi_hpal.ipynb`](notebooks/compute_dsmroi_hpal.ipynb):
   notebook used to generate first level RDMs using hyperaligned movie
 data
