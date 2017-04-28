@@ -29,6 +29,10 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
   accuracy maps using CoSMoMVPA
 - [`compute_dsmroi_firstlev.py`](compute_dsmroi_firstlev.py): script to
   compute first-level cross-validated representational dissimilarity matrices
+- [`notebooks/define_rois_mds.ipynb`](notebooks/define_rois_mds.ipynb):
+  notebook used to obtain non-overlapping spherical ROIs in both the
+task data and the movie hyperaligned data
+
 
 ## Auxiliary modules
 
