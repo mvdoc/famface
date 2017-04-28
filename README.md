@@ -41,8 +41,8 @@ task data and the movie hyperaligned data
 - [`compute_dsmroi_firstlev.py`](compute_dsmroi_firstlev.py): script to
   compute first-level cross-validated representational dissimilarity matrices
 - [`notebooks/compute_dsmroi_hpal.ipynb`](notebooks/compute_dsmroi_hpal.ipynb):
-  notebook used to generate first level RDMs using hyperaligned movie
-data
+  notebook used to compute the similarity of representational geometries
+using hyperaligned movie data
 - [`notebooks/plot_mds.ipynb`](notebooks/plot_mds.ipynb):
   notebook used to generate MDS and circular graph plots for task and
 hyperaligned data
