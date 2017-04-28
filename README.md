@@ -6,7 +6,7 @@ Guntupalli, Jason D. Gors, and M. Ida Gobbini.
 
 ## Preprocessing and GLM modeling
 
-- `fmri_ants_openfmri.py`: nipype pipeline to perform preprocessing
+- [`fmri_ants_openfmri.py`](fmri_ants_openfmri.py): nipype pipeline to perform preprocessing
   (spatial normalization to MNI 2 mm using ANTs, first and second level
 univariate analysis using FSL)
 - `pymvpa_hrf.py`: script to run a GLM using PyMVPA and Nipy, to extract
