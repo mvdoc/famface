@@ -32,6 +32,9 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
 - [`notebooks/define_rois_mds.ipynb`](notebooks/define_rois_mds.ipynb):
   notebook used to obtain non-overlapping spherical ROIs in both the
 task data and the movie hyperaligned data
+- [`notebooks/compute_dsmroi_hpal.ipynb`](notebooks/compute_dsmroi_hpal.ipynb):
+  notebook used to generate first level RDMs using hyperaligned movie
+data
 
 
 ## Auxiliary modules
