@@ -1,0 +1,196 @@
+---
+title: "Supplementary Analysis in Early Visual Cortex Probabilistic ROIs"
+output: html_notebook
+---
+
+```{r}
+require(plyr)
+require(dplyr)
+require(stringr)
+require(ggplot2)
+
+df <- 
+    ldply(list.files('../../results/ev-roi-class_newmask/', pattern='csv', 
+                     full.names=T),
+          read.csv)
+df
+```
+
+```{r}
+# mean the folds
+df <- 
+    df %>%
+    group_by(subid, roi, permutation) %>%
+    summarise(acc=mean(acc))
+
+# bootstrap one permutation for each subid and roi
+bstrap_perms_ <- function(df) {
+    df %>%
+        group_by(subid, roi) %>%
+        sample_n(1, replace=T) 
+}
+
+bstrap_perms <- function(df) {
+    df %>%
+        bstrap_perms_() %>%
+        group_by(roi) %>%
+        summarise(acc=mean(acc))
+}
+
+# change this if needed
+which_df <- df
+
+generate_df_permutations <- function(df, nboots=1000, seed=343) {
+    df_perms <- data.frame()
+    set.seed(seed)
+    for (idx in 1:nboots) {
+        tmp <- bstrap_perms(df)
+        df_perms <- rbind(df_perms, tmp)
+    }
+    return(df_perms)
+}
+
+##### TEST --- UNCOMMENT TO RUN
+# Generate a fake dataset
+# require(assertthat)
+# nsubjs <- 10
+# nperms <- 30
+# nrois <- 3
+# 
+# null_data_roi1 <- rnorm(nsubjs * nperms, 0, 10)
+# null_data_roi2 <- rnorm(nsubjs * nperms, 20, 10)
+# null_data_roi3 <- rnorm(nsubjs * nperms, 30, 10)
+# 
+# null_df <-
+#     data.frame(expand.grid(subid=1:nsubjs, 
+#                            permutation = 0:(nperms-1),
+#                            roi=1:nrois),
+#                acc=c(null_data_roi1, null_data_roi2, null_data_roi3))
+# 
+# # check we got the right order
+# null_df %>%
+#     group_by(roi) %>%
+#     summarise(mean(acc), sd(acc))
+# 
+# df_null_perms <- generate_df_permutations(null_df, nboots=10000)
+# 
+# ggplot(df_null_perms) +
+#     geom_histogram(aes(acc), binwidth=1) +
+#     facet_wrap(~roi) 
+# 
+# # check that the bootstrapping works in the way it should
+# bs_df <- bstrap_perms_(null_df)
+# assert_that(nrow(bs_df) == nrow(null_df) / nperms)
+#### #############
+
+# get permuted dataset
+if (!file.exists('df_perms.Rdata')) {
+df_perms <- generate_df_permutations(which_df, nboots=10000)
+save(df_perms, file='df_perms.Rdata', compress='gzip')
+} else {
+  load('df_perms.Rdata')
+}
+
+# get original values
+df_orig <-
+    which_df %>%
+    filter(permutation == 0) %>%
+    group_by(roi) %>%
+    summarise(acc=mean(acc))
+
+unique_rois <- unique(df_orig$roi)
+pval_roi <- data.frame()
+for (roi_ in unique_rois) {
+    df_perms_roi <- df_perms %>%
+        filter(roi == roi_)
+    df_orig_roi <- df_orig %>%
+        filter(roi == roi_)
+    pval <- 1 - (sum(df_perms_roi$acc <= df_orig_roi$acc) + 1)/(nrow(df_perms_roi) + 1)
+    tmp <- data.frame(roi=roi_, pval=pval)
+    pval_roi <- rbind(pval_roi, tmp)
+}
+
+# sort plots
+df_perms$roi <-
+        factor(df_perms$roi,
+           levels=c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3'))
+df_orig$roi <-
+        factor(df_orig$roi,
+           levels=c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3'))
+pval_roi$roi <-
+        factor(pval_roi$roi,
+           levels=c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3'))
+    
+
+df_perms$roi_lbl <- factor(str_to_title(df_perms$roi))
+pval_roi$roi_lbl <- factor(str_to_title(pval_roi$roi))
+df_orig$roi_lbl <- factor(str_to_title(df_orig$roi))
+
+df_perms$roi_lbl <-
+        factor(df_perms$roi_lbl,
+           levels=str_to_title(
+               c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3')))
+df_orig$roi_lbl <-
+        factor(df_orig$roi_lbl,
+           levels=str_to_title(
+               c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3')))
+pval_roi$roi_lbl <-
+        factor(pval_roi$roi_lbl,
+           levels=str_to_title(
+               c('V1v', 'V1d', 'V1',
+                    'V2v', 'V2d', 'V2',
+                    'V3v', 'V3d', 'V3',
+                    'V1+V2', 'V1+V2+V3')))
+    
+pval_roi$color_sig <-
+    ifelse(pval_roi$pval < 0.05, 'sig', 'ns')
+pval_roi$color_sig_bf <-
+    ifelse(pval_roi$pval < 0.05/11, 'sig', 'ns')
+```
+
+```{r, fig.height=8, fig.width=12}
+# get max xvalues
+xmax <- max(df_perms$acc, df_orig$acc) - .5
+
+plot_ev_perms <- 
+ggplot() +
+    geom_histogram(data=df_perms, aes(acc), binwidth=0.001) +
+    geom_vline(xintercept=.5, linetype='dashed', color='black') +
+    facet_wrap(~roi_lbl, ncol=3, scales='free') +
+    geom_vline(data=df_orig, aes(xintercept=acc), 
+               linetype='dashed', color='blue') +
+    geom_text(data=df_orig, x=.45, y=400, 
+               aes(label=paste('M =', round(acc, 4))),
+              hjust='left') +
+    geom_text(data=pval_roi, x=.45, y=350, 
+               aes(label=paste('p =', round(pval, 4)),
+                   color=color_sig_bf),
+              hjust='left') +
+    scale_color_manual(values=c('black', 'red')) +
+    guides(color=FALSE) +
+    theme_bw() +
+    labs(x='Classifier Accuracy', y='Histogram Count') +
+    coord_cartesian(xlim=c(.5 - xmax, .5 + xmax),
+                    ylim=c(0, 450))
+
+plot_ev_perms
+#pdf(file='evroi-acc-perms.pdf', onefile=F, title='', 
+#paper='special', width=12, height=8, bg='white')
+#plot_ev_perms
+#dev.off()
+```
