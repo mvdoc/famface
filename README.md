@@ -32,6 +32,8 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
   datasets into CoSMoMVPA datasets for statistical testing using TFCE
 - [`run_tfce_mvdoc_fx.m`](run_tfce_mvdoc_fx.m): script to run TFCE on
   accuracy maps using CoSMoMVPA
+- [`ev_roi_clf.py`](ev_roi_clf.py): script to run additional decoding analyses in probabilistic masks of early visual areas
+- [`permutation_testing_ev.Rmd`](permutation_testing_ev.Rmd): RMarkdown notebook that plots the results of the analysis in  probabilistic masks of early visual areas (see also pre-computed HTML output [`permutation_testing_ev.nb.html`](permutation_testing_ev.nb.html))
 
 ### Similarity of Representational Geometries
 
