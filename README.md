@@ -48,6 +48,10 @@ using hyperaligned movie data
 - [`notebooks/plot_mds.ipynb`](notebooks/plot_mds.ipynb):
   notebook used to generate MDS and circular graph plots for task and
 hyperaligned data
+- [`notebooks/get_between-within_correlations.ipynb`](notebooks/get_between-within_correlations.ipynb):
+  notebook used to obtain dataframes with correlations between/within
+systems for each subject (task data) or pair of subjects (hyperaligned
+data)
 - [`mds_betweenwithin_corr.Rmd`](mds_betweenwithin_corr.Rmd): RMarkdown
   notebook with additional analyses on correlations of RDMS
 between/within systems (see rendering in
