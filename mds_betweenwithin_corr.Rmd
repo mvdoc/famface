@@ -1,0 +1,298 @@
+---
+title: "Analysis of within/between correlations"
+output: html_notebook
+---
+
+```{r}
+require(plyr)
+require(tidyverse)
+require(bootES)
+require(stringr)
+require(broom)
+```
+
+# First we look at hyperaligned data
+```{r, message=FALSE, warning=FALSE}
+fns <- Sys.glob('*hpal*correlations.csv')
+systems <- c('Anterior Core', 'Core', 'Dorsal Core',
+             'Extended', 'Precuneus', 'Theory of Mind', 'Ventral Core')
+load_csv <- function(csv) {
+  df <- read_csv(csv)
+  df$system <- mapvalues(csv, fns, systems)
+  return(df)
+}
+
+df <- ldply(fns, load_csv)
+df <-
+df %>%
+  group_by(system) %>%
+  mutate(diff=within-between, mdiff=mean(diff))
+
+df$system <-
+  factor(df$system,
+         levels=c('Core', 'Ventral Core', 'Dorsal Core', 
+                  'Anterior Core', 'Extended', 'Precuneus', 'Theory of Mind'))
+
+df_general <- df %>%
+  filter(system %in% c('Core', 'Extended'))
+
+df_within_core <- df %>%
+  filter(system %in% c('Ventral Core', 'Dorsal Core', 'Anterior Core'))
+df_within_ext <- df %>%
+  filter(system %in% c('Precuneus', 'Theory of Mind'))
+
+```
+
+## Plot within core and within extended
+```{r}
+ggplot(df_general, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  coord_cartesian(ylim=c(0, 0.25))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+
+ggsave('hpal_core_ext.pdf', width=8, height=6)
+```
+
+## Plot the distinctions within the core system  
+```{r}
+ggplot(df_within_core, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  coord_cartesian(ylim=c(0, 0.5))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+ggsave('hpal_core.pdf', width=8, height=6)
+```
+
+## Plot the distinctions between the extend system
+```{r}
+ggplot(df_within_ext, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  coord_cartesian(ylim=c(0, 0.3))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+ggsave('hpal_ext.pdf', width=8, height=6)
+```
+
+## Compute bootstrapped CIs
+
+```{r, message=FALSE, warning=FALSE}
+get_ci <- function(x, R=100) {
+  ci <- bootES(x, R=R)
+  return(data.frame(t0=ci$t0, lci=ci$bounds[1], rci=ci$bound[2]))
+}
+
+# set seed for reproducibility
+set.seed(7)
+cis <-
+df %>%
+  group_by(system) %>%
+  do(get_ci(.$diff, R=10000))
+
+cis <- 
+df %>%
+  group_by(system) %>%
+  summarise(within=mean(within), between=mean(between)) %>%
+  merge(cis)
+
+cis
+```
+
+# Next we look at task data
+```{r, message=FALSE, warning=FALSE}
+fns <- Sys.glob('*task*correlations.csv')
+systems <- c('Anterior Core', 'Core', 'Dorsal Core',
+             'Extended', 'Precuneus', 'Theory of Mind', 'Ventral Core')
+load_csv <- function(csv) {
+  df <- read_csv(csv)
+  df$system <- mapvalues(csv, fns, systems)
+  return(df)
+}
+
+df <- ldply(fns, load_csv)
+df <-
+df %>%
+  group_by(system) %>%
+  mutate(diff=within-between, mdiff=mean(diff))
+
+df$system <-
+  factor(df$system,
+         levels=c('Core', 'Ventral Core', 'Dorsal Core', 
+                  'Anterior Core', 'Extended', 'Precuneus', 'Theory of Mind'))
+
+df_general <- df %>%
+  filter(system %in% c('Core', 'Extended'))
+
+df_within_core <- df %>%
+  filter(system %in% c('Ventral Core', 'Dorsal Core', 'Anterior Core'))
+df_within_ext <- df %>%
+  filter(system %in% c('Precuneus', 'Theory of Mind'))
+
+```
+
+## Plot within core and within extended
+```{r}
+ggplot(df_general, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  #coord_cartesian(ylim=c(0, 0.25))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+
+ggsave('task_core_ext.pdf', width=8, height=6)
+```
+
+## Plot the distinctions within the core system  
+```{r}
+ggplot(df_within_core, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  #coord_cartesian(ylim=c(0, 0.5))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+ggsave('task_core.pdf', width=8, height=6)
+```
+
+## Plot the distinctions between the extend system
+```{r}
+ggplot(df_within_ext, aes(system, diff)) + 
+  geom_point(position=position_jitter(w=0.2),
+             size=1, alpha=0.8) +
+  geom_crossbar(aes(ymin=mdiff, ymax=mdiff, y=mdiff),
+                fatten=2.5, width=0.4) +
+  theme_bw() +
+  labs(x='System', y='Within - Between Correlation') +
+  #coord_cartesian(ylim=c(0, 0.3))# +
+  #theme(axis.text.x=element_text(angle=0, hjust=0))
+ggsave('task_ext.pdf', width=8, height=6)
+```
+
+## Compute bootstrapped CIs
+
+```{r, message=FALSE, warning=FALSE}
+get_ci <- function(x, R=100) {
+  ci <- bootES(x, R=R)
+  return(data.frame(t0=ci$t0, lci=ci$bounds[1], rci=ci$bound[2]))
+}
+
+# set seed for reproducibility
+set.seed(7)
+cis <-
+df %>%
+  group_by(system) %>%
+  do(get_ci(.$diff, R=10000))
+
+cis <- 
+df %>%
+  group_by(system) %>%
+  summarise(within=mean(within), between=mean(between)) %>%
+  merge(cis)
+
+cis
+```
+
+# Perform LMM model on correlations
+
+```{r}
+# disable scientific notation
+options(scipen=999)
+```
+```{r}
+df_hpal <- read_csv('hpal_pairwise_corr.csv')
+df_task <- read_csv('task_pairwise_corr.csv')
+
+# filter out early visual
+df_hpal <-
+  df_hpal %>%
+  filter(!str_detect(systems, 'early_visual'))
+  
+df_task <-
+  df_task %>%
+  filter(!str_detect(systems, 'early_visual'))
+
+# add another label for the distinction core/extended system for hpal
+system1 <- 
+  str_match(df_hpal$systems, '(.*)\\+')[, 2]
+system2 <-
+  str_match(df_hpal$systems, '\\+(.*)')[, 2]
+
+system1_core <-
+  as.numeric(str_detect(system1, 'core'))
+system2_core <-
+  as.numeric(str_detect(system2, 'core'))
+
+system_type <- system1_core + system2_core
+system_type <- mapvalues(system_type, c(0, 1, 2), c('within_extended', 'between', 'within_core'))
+df_hpal$system_type <- system_type
+
+# add another label for the distinction core/extended system for task
+system1 <- 
+  str_match(df_task$systems, '(.*)\\+')[, 2]
+system2 <-
+  str_match(df_task$systems, '\\+(.*)')[, 2]
+
+system1_core <-
+  as.numeric(str_detect(system1, 'core'))
+system2_core <-
+  as.numeric(str_detect(system2, 'core'))
+
+system_type <- system1_core + system2_core
+system_type <- mapvalues(system_type, c(0, 1, 2), c('within_extended', 'between', 'within_core'))
+df_task$system_type <- system_type
+```
+
+Now run a glmr model on the individual correlations with a contrast
+according to within_core and between, and according to within_core and between
+```{r}
+require(lme4)
+# set up between as the reference level so contrats will be against that
+df_hpal$system_type <- factor(df_hpal$system_type, 
+                              levels=c('between', 'within_core', 'within_extended'))
+contrasts(df_hpal$system_type)
+
+m_hpal <- lmer(corr ~ system_type + (1 | subj), df_hpal)
+# set seed for reproducibility and get confidence intervals
+set.seed(921)
+ci_hpal <- confint.merMod(m_hpal, nsim=10000, method='boot', parallel='multicore', ncpus=8)
+
+# now for task
+df_task$system_type <- factor(df_task$system_type, 
+                              levels=c('between', 'within_core', 'within_extended'))
+contrasts(df_task$system_type)
+m_task <- lmer(corr ~ system_type + (1 | subj), df_task)
+set.seed(923)
+ci_task <- confint.merMod(m_task, nsim=10000, method='boot', 
+                          parallel='multicore', ncpus=8)
+
+tidy(m_hpal)
+ci_hpal
+tidy(m_task)
+ci_task
+```
+```{r}
+ci_hpal_ <- data.frame(param=row.names(ci_hpal), ci_hpal)
+ci_task_ <- data.frame(param=row.names(ci_task), ci_task)
+write_csv(ci_hpal_, 'hpal_model_cis.csv')
+write_csv(ci_task_, 'task_model_cis.csv')
+
+write_csv(tidy(m_hpal), 'hpal_model_param.csv')
+write_csv(tidy(m_task), 'task_model_param.csv')
+```
