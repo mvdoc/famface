@@ -1,0 +1,74 @@
+---
+title: "Decoding of Familiarity with HMAX C1, C2 features"
+output: html_notebook
+---
+
+```{r}
+require(plyr)
+require(tidyverse)
+```
+```{r}
+# load dataset
+df <- read_csv('../../results/hmax_famvsunfam-id/hmax_famvsunfam-id_c1c2_perm.csv')
+df
+```
+```{r}
+# bootstrap n_bs permutation for each subject
+n_bs <- 10000
+# set seed for reproducibility
+set.seed(444)
+df_null <-
+df %>%
+    group_by(subject) %>%
+    sample_n(n_bs, replace=T) %>%
+    mutate(i_bs=1:n_bs) %>%
+    group_by(i_bs) %>%
+    summarise(acc_c1=mean(acc_c1), acc_c2=mean(acc_c2)) 
+
+# get original values
+df_orig <-
+    df %>%
+    filter(permutation == 'perm00') %>%
+    summarise(acc_c1=mean(acc_c1), acc_c2=mean(acc_c2)) 
+```
+Now plot null distributions for C1
+```{r}
+# empirical p-value
+pval_c1 <- 
+    1 - (sum(df_null$acc_c1 <= df_orig$acc_c1) + 1)/(n_bs + 1)
+pval_c2 <- 
+    1 - (sum(df_null$acc_c2 <= df_orig$acc_c2) + 1)/(n_bs + 1)
+
+pval <-
+  data.frame(pval=c(pval_c1, pval_c2),
+             layer=c('acc_c1', 'acc_c2'))
+
+# gather dataframe so we can plot everything together
+df_orig_g <- gather(df_orig, key='layer', value='acc')
+df_null_g <- gather(df_null, key='layer', value='acc', -i_bs)
+```
+
+```{r, fig.height=5, fig.width=8}
+df_null_g$layer_lbl <- mapvalues(df_null_g$layer, c('acc_c1', 'acc_c2'), c('Layer C1', 'Layer C2'))
+df_orig_g$layer_lbl <- mapvalues(df_orig_g$layer, c('acc_c1', 'acc_c2'), c('Layer C1', 'Layer C2'))
+pval$layer_lbl <- mapvalues(pval$layer, c('acc_c1', 'acc_c2'), c('Layer C1', 'Layer C2'))
+
+ggplot(df_null_g) + 
+  geom_histogram(aes(acc), bins=100, fill='lightgray') +
+  geom_vline(xintercept=.5, linetype='dashed', color='black') +
+  geom_vline(data=df_orig_g, aes(xintercept=acc), linetype='dashed', color='blue') +
+  theme_bw(base_size=12) +
+  labs(x='Classifier Accuracy', y='Histogram Count') +
+  geom_text(data=df_orig_g, x=.45, y=300, 
+             aes(label=paste('M =', round(acc, 2))),
+            hjust='left') +
+  geom_text(data=pval, x=.45, y=280, 
+             aes(label=paste('p =', round(pval, 2))),
+            hjust='left') +
+  facet_wrap(~layer_lbl)
+
+#ggsave('hmax_familiarvsunfamiliar-id_decoding.png', width=8, height=5)
+```
+
+
+
