@@ -1,3 +1,5 @@
+# Main License
+
 MIT License
 
 Copyright (c) 2017 Matteo Visconti di Oleggio Castello
@@ -19,3 +21,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+# 3rd Party Code
+
+Some code distributed here was created by other authors,
+hence you should adhere to the copyright and license terms of respective
+authors if you are to use corresponding parts.
+
+[fmri_ants_openfmri.py](fmri_ants_openfmri.py) from Nipype - Apache License 2.0 - Copyright (c) 2009-
