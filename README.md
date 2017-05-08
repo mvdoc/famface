@@ -34,7 +34,7 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
   accuracy maps using CoSMoMVPA
 - [`ev_roi_clf.py`](ev_roi_clf.py): script to run additional decoding analyses in probabilistic masks of early visual areas
 - [`permutation_testing_ev.Rmd`](permutation_testing_ev.Rmd): RMarkdown notebook that plots the results of the analysis in  probabilistic masks of early visual areas (see also pre-computed HTML output [`permutation_testing_ev.nb.html`](permutation_testing_ev.nb.html))
-- [`hmax_familiarvsunfamiliar-id.Rmd`](hmax_familiarvsunfamiliar-id.Rmd): RMarkdown notebook used to analyze the decoding of images using HMAX features (see also pre-computed HTML output [`hmax_familiarvsunfamiliar-id.Rmd`](hmax_familiarvsunfamiliar-id.Rmd))
+- [`hmax_familiarvsunfamiliar-id.Rmd`](hmax_familiarvsunfamiliar-id.Rmd): RMarkdown notebook used to analyze the decoding of images using HMAX features (see also pre-computed HTML output [`hmax_familiarvsunfamiliar-id.nb.html`](hmax_familiarvsunfamiliar-id.nb.html))
 
 ### Similarity of Representational Geometries
 
