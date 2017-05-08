@@ -1,7 +1,6 @@
-# TITLE
+# Analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception"
 
-This repository contains preprocessing and analysis scripts for "..." by
-Matteo Visconti di Oleggio Castello, Yaroslav O. Halchenko, J. Swaroop
+This repository contains preprocessing and analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception" by Matteo Visconti di Oleggio Castello, Yaroslav O. Halchenko, J. Swaroop
 Guntupalli, Jason D. Gors, and M. Ida Gobbini.
 
 ## Preprocessing and GLM modeling
