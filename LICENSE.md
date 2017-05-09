@@ -29,3 +29,4 @@ hence you should adhere to the copyright and license terms of respective
 authors if you are to use corresponding parts.
 
 [fmri_ants_openfmri.py](fmri_ants_openfmri.py) from Nipype - Apache License 2.0 - Copyright (c) 2009-
+[group_multregress_openfmri.py](group_multregress_openfmri.py) by Anne Park and Satrajit Ghosh - Apache License 2.0 - Copyright (c) 2016-
