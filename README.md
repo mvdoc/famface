@@ -3,6 +3,8 @@
 This repository contains preprocessing and analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception" by Matteo Visconti di Oleggio Castello, Yaroslav O. Halchenko, J. Swaroop
 Guntupalli, Jason D. Gors, and M. Ida Gobbini.
 
+The dataset is available through [DataLad](http://datasets.datalad.org/?dir=/labs/gobbini/famface/data). Note that we have released data for one subject so far, and we'll release the entire dataset after publication.
+
 ## Preprocessing and GLM modeling
 
 - [`fmri_ants_openfmri.py`](fmri_ants_openfmri.py): nipype pipeline to
@@ -58,8 +60,9 @@ between/within systems (see rendering in
 [`mds_betweenwithin_corr.nb.html`](mds_betweenwithin_corr.nb.html))
 
 
-## Auxiliary modules
+## Auxiliary and miscellaneous files
 
 - [`mds_rois.py`](mds_rois.py): contains functions to run MDS analyses
 - [`expdir.py`](expdir.py): to fetch directories used in analyses
+- [`notebooks/scatterplots.ipynb`](notebooks/scatterplots.ipynb): notebook used to plot scatterplots shown in the supplementary material
 
