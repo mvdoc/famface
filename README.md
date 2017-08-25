@@ -3,7 +3,16 @@
 This repository contains preprocessing and analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception" by Matteo Visconti di Oleggio Castello, Yaroslav O. Halchenko, J. Swaroop
 Guntupalli, Jason D. Gors, and M. Ida Gobbini. A preprint is available on [bioRxiv](http://biorxiv.org/content/early/2017/05/15/138297).
 
-The dataset is available through [DataLad](http://datasets.datalad.org/?dir=/labs/gobbini/famface/data). Note that we have released data for one subject so far, and we'll release the entire dataset after publication.
+The dataset is available through [DataLad](http://datasets.datalad.org/?dir=/labs/gobbini/famface). Once datalad is installed in your system, you can get the data with
+
+```bash
+# install the dataset without downloading any data
+datalad install -r ///labs/gobbini/famface
+# download the data
+datalad get famface
+```
+
+We have released data for one subject so far, and we'll release the entire dataset after publication.
 
 ## Preprocessing and GLM modeling
 
