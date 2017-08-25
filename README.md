@@ -35,6 +35,7 @@ with FSL. Based on the pipeline provided by Satra Ghosh and Anne Park
   accuracy maps using CoSMoMVPA
 - [`ev_roi_clf.py`](ev_roi_clf.py): script to run additional decoding analyses in probabilistic masks of early visual areas
 - [`permutation_testing_ev.Rmd`](permutation_testing_ev.Rmd): RMarkdown notebook that plots the results of the analysis in  probabilistic masks of early visual areas (see also pre-computed HTML output [`permutation_testing_ev.nb.html`](permutation_testing_ev.nb.html))
+- [`hmax_decoding_familiarvsunfamiliar.ipynb`](hmax_decoding_familiarvsunfamiliar.ipynb): Jupyter notebook with decoding analysis on features extracted from the HMAX model.
 - [`hmax_familiarvsunfamiliar-id.Rmd`](hmax_familiarvsunfamiliar-id.Rmd): RMarkdown notebook used to analyze the decoding of images using HMAX features (see also pre-computed HTML output [`hmax_familiarvsunfamiliar-id.nb.html`](hmax_familiarvsunfamiliar-id.nb.html))
 
 ### Similarity of Representational Geometries
@@ -66,3 +67,7 @@ between/within systems (see rendering in
 - [`expdir.py`](expdir.py): to fetch directories used in analyses
 - [`notebooks/scatterplots.ipynb`](notebooks/scatterplots.ipynb): notebook used to plot scatterplots shown in the supplementary material
 
+## Response to Reviewers
+- [response_reviewers_ev.ipynb](response_reviewers_ev.ipynb): Is the dorsal stream also close to EV areas?
+- [response_reviewers_modelrsa.ipynb](response_reviewers_modelrsa.ipynb): Can we say more about why the representations differ between areas?
+- [response_reviewers_similarity_taskmovie.ipynb](response_reviewers_similarity_taskmovie.ipynb): How similar are the second-order representational geometries between the task data and the movie data?
