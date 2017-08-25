@@ -9,7 +9,7 @@ require(tidyverse)
 ```
 ```{r}
 # load dataset
-df <- read_csv('../../results/hmax_famvsunfam-id/hmax_famvsunfam-id_c1c2_perm.csv')
+df <- read_csv('../../results/hmax_famvsunf-id/hmax_famvsunfam-id_c1c2_perm.csv')
 df
 ```
 ```{r}
@@ -67,7 +67,7 @@ ggplot(df_null_g) +
             hjust='left') +
   facet_wrap(~layer_lbl)
 
-#ggsave('hmax_familiarvsunfamiliar-id_decoding.png', width=8, height=5)
+ggsave('hmax_familiarvsunfamiliar-id_decoding.png', width=8, height=5)
 ```
 
 
