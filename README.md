@@ -77,6 +77,6 @@ between/within systems (see rendering in
 - [`notebooks/scatterplots.ipynb`](notebooks/scatterplots.ipynb): notebook used to plot scatterplots shown in the supplementary material
 
 ## Response to Reviewers
-- [response_reviewers_ev.ipynb](response_reviewers_ev.ipynb): Is the dorsal stream also close to EV areas?
-- [response_reviewers_modelrsa.ipynb](response_reviewers_modelrsa.ipynb): Can we say more about why the representations differ between areas?
-- [response_reviewers_similarity_taskmovie.ipynb](response_reviewers_similarity_taskmovie.ipynb): How similar are the second-order representational geometries between the task data and the movie data?
+- [response_reviewers_ev.ipynb](notebooks/response_reviewers_ev.ipynb): Is the dorsal stream also close to EV areas?
+- [response_reviewers_modelrsa.ipynb](notebooks/response_reviewers_modelrsa.ipynb): Can we say more about why the representations differ between areas?
+- [response_reviewers_similarity_taskmovie.ipynb](notebooks/response_reviewers_similarity_taskmovie.ipynb): How similar are the second-order representational geometries between the task data and the movie data?
