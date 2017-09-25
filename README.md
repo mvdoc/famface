@@ -1,7 +1,6 @@
 # Analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception"
 
-This repository contains preprocessing and analysis scripts for "The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception" by Matteo Visconti di Oleggio Castello, Yaroslav O. Halchenko, J. Swaroop
-Guntupalli, Jason D. Gors, and M. Ida Gobbini. A preprint is available on [bioRxiv](http://biorxiv.org/content/early/2017/05/15/138297).
+This repository contains preprocessing and analysis scripts for Visconti di Oleggio Castello, M., Halchenko, Y. O., Guntupalli, J. S., Gors, J. D., & Gobbini, M. I. (2017). The neural representation of personally familiar and unfamiliar faces in the distributed system for face perception. *Scientific Reports*, 7(1), 12237. https://doi.org/10.1038/s41598-017-12559-1
 
 The dataset is available through [DataLad](http://datasets.datalad.org/?dir=/labs/gobbini/famface). Once datalad is installed in your system, you can get the data with
 
