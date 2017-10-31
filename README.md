@@ -11,8 +11,6 @@ datalad install -r ///labs/gobbini/famface
 datalad get famface
 ```
 
-We have released data for one subject so far, and we'll release the entire dataset after publication.
-
 ## Preprocessing and GLM modeling
 
 - [`fmri_ants_openfmri.py`](fmri_ants_openfmri.py): nipype pipeline to
