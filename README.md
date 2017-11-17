@@ -17,7 +17,7 @@ datalad get famface
   perform preprocessing (spatial normalization to MNI 2 mm using ANTs,
 first and second level univariate analysis using FSL). Based on the
 example with the same name from stock Nipype
-- [`pymvpa_hrf.py`](pyvmpa_hrf.py): script to run a GLM using PyMVPA and
+- [`pymvpa_hrf.py`](pymvpa_hrf.py): script to run a GLM using PyMVPA and
   Nipy, to extract betas used for multivariate analysis
 - [`make_unionmask.py`](make_unionmask.py): script to make a union mask
 - [`stack_betas.py`](stack_betas.py): script to stack betas for
