@@ -11,6 +11,15 @@ datalad install -r ///labs/gobbini/famface
 datalad get famface
 ```
 
+The latest release of this dataset is in BIDS format, however the
+scripts are still configured to run with the old OpenfMRI format. You
+can checkout the old file structure as follows
+
+```
+cd famface/data
+git checkout openfmri-v1.0.0
+```
+
 # Setting up the environment
 
 We recommend using either a [NeuroDebian](http://neuro.debian.net/)
