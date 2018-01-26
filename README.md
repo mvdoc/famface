@@ -20,7 +20,7 @@ cd famface/data
 git checkout openfmri-v1.0.0
 ```
 
-# Setting up the environment
+## Setting up the environment
 
 We recommend using either a [NeuroDebian](http://neuro.debian.net/)
 virtual machine, or a container (Docker or Singularity) with NeuroDebian
