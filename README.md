@@ -11,6 +11,24 @@ datalad install -r ///labs/gobbini/famface
 datalad get famface
 ```
 
+# Setting up the environment
+
+We recommend using either a [NeuroDebian](http://neuro.debian.net/)
+virtual machine, or a container (Docker or Singularity) with NeuroDebian
+installed to replicate these analyses. In particular, the Python scripts
+might rely on specific versions of python packages. For example, the
+preprocessing script `fmri_ants_openfmri.py` won't work with newer
+versions of Nipype (> 0.11.0) because of recent refactoring. We kept track of the
+versions of the most important Python packages in the `requirements.txt`
+file. If you're using conda, you can get started as follows:
+
+```
+conda create --name famface python=2.7
+pip install -r requirements.txt
+```
+
+You should also have FSL and ANTs installed.
+
 ## Preprocessing and GLM modeling
 
 - [`fmri_ants_openfmri.py`](fmri_ants_openfmri.py): nipype pipeline to
