@@ -11,7 +11,7 @@ datalad install -r ///labs/gobbini/famface
 datalad get famface
 ```
 
-The latest release of this dataset is in BIDS format, however the
+**NOTA BENE:** The latest release of this dataset is in BIDS format, however the
 scripts are still configured to run with the old OpenfMRI format. You
 can checkout the old file structure as follows
 
@@ -37,6 +37,60 @@ pip install -r requirements.txt
 ```
 
 You should also have FSL and ANTs installed.
+
+### Using the singularity image
+
+We provide a [Singularity](http://singularity.lbl.gov/) definition file
+that can be used to build a container with all the necessary packages to
+run the analyses (except MATLAB--testing in progress with Octave).
+
+Once Singularity is installed on your system, the image can be built as
+follows (assuming singularity 2.4.x)
+
+```bash
+sudo singularity build famface.simg Singularity
+```
+
+alternatively, the image can be pulled from Singularity Hub with
+
+```bash
+singularity pull --name famface.simg shub://mvdoc/famface
+```
+
+Inside the container we provide the mountpoints `/data` and `/scripts`,
+so for example one could run the preprocessing for one participant as
+follows
+
+```bash
+singularity run -e -c \
+  -B $PWD:/scripts \
+  -B /path/to/famface:/data \
+  famface.simg \
+  python /scripts/fmri_ants_openfmri.py \
+     -d /data/data -s sub001 \
+     --hpfilter 60.0 \
+     --derivatives \
+     -o /data/derivatives/output \
+     -w /data/workdir -p MultiProc
+```
+
+Here we are assuming that `/path/to/famface` is the path to the
+`famface` directory as pulled from datalad, which contains a `data`
+directory. Note that all the paths passed to the script need to be relative to 
+the filesystem inside the container.
+
+Running the following will instead enter the container for interactive
+analyses:
+
+```bash
+singularity run -e -c \
+  -B $PWD:/scripts \
+  -B /path/to/famface:/data \
+  famface.simg 
+```
+
+Please note that some paths in the scripts might be hardcoded, so they
+need to be changed prior to running the scripts.
 
 ## Preprocessing and GLM modeling
 
