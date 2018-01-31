@@ -8,8 +8,9 @@ from: neurodebian:jessie
     apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
     apt-get update
     eatmydata apt-get install -y --no-install-recommends \
-      python-mvpa2 fsl-core fsl-mni152-templates ants python-pip python-datalad python-scipy python-numpy \
-      python-sklearn python-dateutil
+      python-mvpa2 fsl-core fsl-mni152-templates ants python-pip \
+      python-datalad python-scipy python-numpy \
+      python-sklearn python-dateutil convert3d
     eatmydata apt-get install -y python-nipype=0.11.0-1~nd80+1 
     mkdir /data /scripts /derivatives /ihome /idata
 
